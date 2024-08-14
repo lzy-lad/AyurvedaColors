@@ -1,0 +1,205 @@
+<html><head><base href="https://websimcreationengine.ai/color-browser/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Gradient Color Browser</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    transition: all 0.5s ease;
+    background-color: #f0f0f0;
+}
+
+#colorDisplay {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    transition: all 0.5s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#buttonContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+#colorInfo {
+    max-width: 600px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Original Gradients */
+.anti-cancer {
+    background: linear-gradient(45deg, #8B008B, #4B0082);
+    color: #FFD700;
+}
+
+.neuro-muscular {
+    background: linear-gradient(45deg, #4682B4, #1E90FF);
+    color: #F0F8FF;
+}
+
+.cosmetics {
+    background: linear-gradient(45deg, #FF69B4, #FFC0CB);
+    color: #8B4513;
+}
+
+.immunity {
+    background: linear-gradient(45deg, #32CD32, #98FB98);
+    color: #006400;
+}
+
+.liver-gut {
+    background: linear-gradient(45deg, #8FBC8F, #2E8B57);
+    color: #F0FFF0;
+}
+
+.anti-diabetics {
+    background: linear-gradient(45deg, #B8860B, #DAA520);
+    color: #800000;
+}
+
+/* New Gradients */
+.anti-cancer-alt {
+    background: linear-gradient(45deg, #4B0082, #FFD700);
+    color: #FFFFFF;
+}
+
+.neuro-muscular-alt {
+    background: linear-gradient(45deg, #005EB8, #D3D3D3);
+    color: #FFFFFF;
+}
+
+.cosmetics-alt {
+    background: linear-gradient(45deg, #FFC0CB, #B76E79);
+    color: #F5F5DC;
+}
+
+.immunity-alt {
+    background: linear-gradient(45deg, #008000, #FFD700);
+    color: #FFFFFF;
+}
+
+.liver-gut-alt {
+    background: linear-gradient(45deg, #A52A2A, #808000);
+    color: #FFFFE0;
+}
+
+.anti-diabetics-alt {
+    background: linear-gradient(45deg, #008080, #ADD8E6);
+    color: #FFFFFF;
+}
+</style>
+</head>
+<body>
+    <div id="colorDisplay">Select a gradient</div>
+    <div id="buttonContainer">
+        <button class="anti-cancer">Anti-Cancer</button>
+        <button class="neuro-muscular">Neuro-Muscular</button>
+        <button class="cosmetics">Cosmetics</button>
+        <button class="immunity">Immunity Boosters</button>
+        <button class="liver-gut">Liver and Gut</button>
+        <button class="anti-diabetics">Anti-Diabetics</button>
+        <button class="anti-cancer-alt">Anti-Cancer Alt</button>
+        <button class="neuro-muscular-alt">Neuro-Muscular Alt</button>
+        <button class="cosmetics-alt">Cosmetics Alt</button>
+        <button class="immunity-alt">Immunity Boosters Alt</button>
+        <button class="liver-gut-alt">Liver and Gut Alt</button>
+        <button class="anti-diabetics-alt">Anti-Diabetics Alt</button>
+    </div>
+
+    <div id="colorInfo"></div>
+
+    <script>
+        const colorDisplay = document.getElementById('colorDisplay');
+        const buttons = document.querySelectorAll('button');
+        const colorInfo = document.getElementById('colorInfo');
+
+        const colorData = {
+            'anti-cancer': {
+                primary: ['Deep Purple (#4B0082)', 'Gold (#FFD700)'],
+                accent: ['White (#FFFFFF)', 'Silver (#C0C0C0)'],
+                psychology: 'Purple symbolizes spirituality and healing, while gold represents strength and resilience. These colors together convey a sense of hope and luxury.'
+            },
+            'neuro-muscular': {
+                primary: ['Blue (#005EB8)', 'Light Gray (#D3D3D3)'],
+                accent: ['White (#FFFFFF)', 'Silver (#C0C0C0)'],
+                psychology: 'Blue is calming and trustworthy, which is essential for neurological health. Light gray adds a sense of balance and neutrality.'
+            },
+            'cosmetics': {
+                primary: ['Soft Pink (#FFC0CB)', 'Rose Gold (#B76E79)'],
+                accent: ['White (#FFFFFF)', 'Light Beige (#F5F5DC)'],
+                psychology: 'Pink is associated with beauty and femininity, while rose gold adds a touch of elegance and modernity.'
+            },
+            'immunity': {
+                primary: ['Green (#008000)', 'Yellow (#FFD700)'],
+                accent: ['White (#FFFFFF)', 'Light Brown (#A52A2A)'],
+                psychology: 'Green represents health and vitality, while yellow is associated with energy and positivity. Together, they convey a sense of natural wellness.'
+            },
+            'liver-gut': {
+                primary: ['Earthy Brown (#A52A2A)', 'Olive Green (#808000)'],
+                accent: ['White (#FFFFFF)', 'Light Yellow (#FFFFE0)'],
+                psychology: 'Brown and green are grounding and natural, symbolizing stability and health. These colors are ideal for products related to digestion and detoxification.'
+            },
+            'anti-diabetics': {
+                primary: ['Teal (#008080)', 'Light Blue (#ADD8E6)'],
+                accent: ['White (#FFFFFF)', 'Silver (#C0C0C0)'],
+                psychology: 'Teal is calming and refreshing, while light blue promotes trust and tranquility. These colors are soothing and reassuring for diabetic care.'
+            }
+        };
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                const className = button.className;
+                colorDisplay.className = className;
+                colorDisplay.textContent = button.textContent;
+                document.body.style.background = getComputedStyle(button).background;
+                document.body.style.color = getComputedStyle(button).color;
+
+                // Update color information
+                const baseClassName = className.split('-alt')[0];
+                const info = colorData[baseClassName];
+                if (info) {
+                    colorInfo.innerHTML = `
+                        <h3>Color Information</h3>
+                        <p><strong>Primary Colors:</strong> ${info.primary.join(', ')}</p>
+                        <p><strong>Accent Colors:</strong> ${info.accent.join(', ')}</p>
+                        <p><strong>Psychology:</strong> ${info.psychology}</p>
+                    `;
+                } else {
+                    colorInfo.innerHTML = '';
+                }
+            });
+        });
+    </script>
+</body></html>
